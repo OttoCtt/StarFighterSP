@@ -17,6 +17,9 @@ void AStarFighterGameModeBase::BeginPlay()
 	ANaveAereaEnemigoNodriza* nve1 = AStarFighterGameModeBase::GetInstancia();
 	nve1->MoveSpeed = 320.f;
 	nve1->Energy = 200.f;
+	nve1->GetShipMeshComponent()->SetWorldScale3D(nve1->GetShipMeshComponent()->GetComponentScale() * 3);
+	//Para comprobar que no spawnea otro objeto
+	GetWorldTimerManager().SetTimer(MemberTimerSpawner, this, &AStarFighterGameModeBase::spawner, 5.0f, true, 10.f);
 }
 
 AStarFighterGameModeBase::AStarFighterGameModeBase()
@@ -39,4 +42,5 @@ ANaveAereaEnemigoNodriza* AStarFighterGameModeBase::GetInstancia()
 
 void AStarFighterGameModeBase::spawner()
 {
+	ANaveAereaEnemigoNodriza* nve2 = AStarFighterGameModeBase::GetInstancia();
 }

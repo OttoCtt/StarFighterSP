@@ -75,11 +75,23 @@ void ANaveAereaEnemigoNodriza::FireShot(FVector FireDirection)
 	if (bCanFire == true) {
 		//Si estamos presionando fuego en una direccion
 		const FRotator FireRotation = FireDirection.Rotation();
-		const FVector SpawnLocation = GetActorLocation() + FireRotation.RotateVector(GunOffset);
+		const FRotator FireRotation1 = (FireDirection + 0.1f).Rotation();
+		const FRotator FireRotation2 = (FireDirection + 0.2f).Rotation();
+		const FRotator FireRotation3 = (FireDirection - 0.1f).Rotation();
+		const FRotator FireRotation4 = (FireDirection - 0.2f).Rotation();
+		const FVector SpawnLocation = GetActorLocation() + FireRotation.RotateVector(FVector(180, 0.f, 0.f));
+		const FVector SpawnLocation1 = GetActorLocation() + FireRotation1.RotateVector(FVector(180.0f, 25.0f, 0.0f));
+		const FVector SpawnLocation2 = GetActorLocation() + FireRotation2.RotateVector(FVector(180.f, 50.f, 0.f));
+		const FVector SpawnLocation3 = GetActorLocation() + FireRotation3.RotateVector(FVector(180.f, -25.f, 0.f));
+		const FVector SpawnLocation4 = GetActorLocation() + FireRotation4.RotateVector(FVector(180.f, -50.f, 0.f));
 		UWorld* const World = GetWorld();
 		if (World != nullptr) {
 			//spawn the projectile
 			World->SpawnActor<AProyectil>(SpawnLocation, FireRotation);
+			World->SpawnActor<AProyectil>(SpawnLocation1, FireRotation1);
+			World->SpawnActor<AProyectil>(SpawnLocation2, FireRotation2);
+			World->SpawnActor<AProyectil>(SpawnLocation3, FireRotation3);
+			World->SpawnActor<AProyectil>(SpawnLocation4, FireRotation4);
 		}
 		bCanFire = false;
 	}

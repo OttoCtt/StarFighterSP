@@ -25,7 +25,11 @@ public:
 	virtual void FireShot(FVector FireDirection);
 	void Fire();
 	float FireForwardValue;
+	float FireForwardValue1;
+	float FireForwardValue2;
 	float FireRightValue;
+	float FireRightValue1;
+	float FireRightValue2;
 
 	FTimerHandle MemberTimerStt;
 	FTimerHandle MemberTimerSttf1;
